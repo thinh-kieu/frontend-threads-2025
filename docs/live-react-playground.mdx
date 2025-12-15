@@ -1,0 +1,66 @@
+---
+sidebar_position: 2
+title: Live React Playground
+---
+
+Live code blocks let readers experiment without leaving the page. Add `live` after a fenced code block language to enable editing and previewing.
+
+React, `useState`, and `useEffect` are available globally inside these playgrounds.
+
+```tsx live
+type CounterProps = {
+  label?: string;
+};
+
+function Counter({ label = 'Live counter' }: CounterProps) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `${label}: ${count}`;
+    return () => {
+      document.title = 'Frontend Threads';
+    };
+  }, [count, label]);
+
+  return (
+    <div
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '0.75rem',
+      }}
+    >
+      <span style={{ minWidth: 120 }}>{label}</span>
+      <button onClick={() => setCount((value) => value - 1)}>-</button>
+      <strong>{count}</strong>
+      <button onClick={() => setCount((value) => value + 1)}>+</button>
+    </div>
+  );
+}
+
+export default function Playground() {
+  const [label, setLabel] = useState('Live counter');
+
+  return (
+    <div style={{ display: 'grid', gap: '0.75rem', maxWidth: 420 }}>
+      <label style={{ display: 'grid', gap: '0.25rem' }}>
+        <span style={{ fontWeight: 600 }}>Label</span>
+        <input
+          value={label}
+          onChange={(event) => setLabel(event.target.value)}
+          placeholder="Live counter"
+          style={{ padding: '0.5rem 0.75rem' }}
+        />
+      </label>
+      <Counter label={label} />
+      <p style={{ margin: 0, color: 'var(--ifm-font-color-secondary)' }}>
+        Tweak the code or the label text above and watch the preview update instantly.
+      </p>
+    </div>
+  );
+}
+```
+
+Static assets can be referenced with absolute paths from the `/static` folder:
+
+![Docusaurus logo](/img/docusaurus.png)
