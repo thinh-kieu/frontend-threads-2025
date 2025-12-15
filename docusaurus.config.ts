@@ -15,14 +15,14 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://frontend-threads-2025.github.io',
+  url: 'https://kieukhuongthinh.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/frontend-threads-2025/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'frontend-threads-2025', // Usually your GitHub org/user name.
+  organizationName: 'kieukhuongthinh', // Usually your GitHub org/user name.
   projectName: 'frontend-threads-2025', // Usually your repo name.
 
   onBrokenLinks: 'throw',
