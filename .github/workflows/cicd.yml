@@ -38,8 +38,11 @@ jobs:
       - name: Type check
         run: npm run typecheck
 
-      - name: Build site
+      - name: Build src
         run: npm run build
+
+      - name: Build docs
+        run: npm run docs:build
 
       - name: Mark deployable
         id: set-deploy
@@ -55,7 +58,7 @@ jobs:
         if: ${{ steps.set-deploy.outputs.should_deploy == 'true' }}
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: docs-dist
 
   deploy:
     needs: ci

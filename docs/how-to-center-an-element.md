@@ -11,7 +11,7 @@ Live playground (edit the JSX and styles directly):
 
 ```jsx
 import React from 'react';
-import { Minion } from '@/ui/components';
+import { Minion } from 'ft2025';
 
 const containerStyle = {
   position: 'relative',

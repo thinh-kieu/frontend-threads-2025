@@ -1,4 +1,5 @@
 .dumi/
 dist/
+docs-dist/
 docs/.dumi/
 *.d.ts

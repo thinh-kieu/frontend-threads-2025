@@ -1,15 +1,16 @@
+import './Minion.less';
+
 import React from 'react';
 
-import styles from './Minion.module.css';
-import minionImg from './minion.png';
+import { img64 } from './minionImg';
 
 type MinionProps = {
   label?: string | number;
 };
 
 export const Minion: React.FC<MinionProps> = ({ label }) => (
-  <div className={styles.minion}>
-    <img src={minionImg} />
+  <div className="minion">
+    <img src={img64} />
     <span>{label ? `${label}` : 'minion'}</span>
   </div>
 );

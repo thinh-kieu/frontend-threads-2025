@@ -1,17 +1,29 @@
 {
-  "name": "frontend-threads-2025",
-  "version": "0.0.1",
+  "name": "ft2025",
+  "version": "0.0.2",
   "description": "A collection of frontend learnings",
   "license": "MIT",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "dumi build",
+    "build": "father build",
+    "build:watch": "father dev",
+    "bump:beta": "npm version prerelease --preid beta",
     "dev": "dumi dev",
+    "docs:build": "dumi build",
+    "docs:preview": "dumi preview",
+    "doctor": "father doctor",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "preview": "dumi preview",
-    "start": "dumi dev",
+    "prepare": "dumi setup",
+    "prepublishOnly": "father doctor && npm run build",
+    "publish:beta": "npm publish --tag beta",
+    "start": "npm run dev",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
@@ -21,15 +33,21 @@
     "dumi": "^2.4.13",
     "eslint": "^8.57.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "father": "^4.1.0",
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.4",
-    "prettier-plugin-packagejson": "^2.2.18",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "prettier-plugin-packagejson": "^2.2.18"
+  },
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "engines": {
     "node": ">=20 <25",
     "npm": ">=9"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "authors": [
     "kieukhuongthinh@gmail.com"

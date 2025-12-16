@@ -3,12 +3,16 @@
     "strict": true,
     "declaration": true,
     "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "esModuleInterop": true,
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "ft2025": ["src"],
+      "ft2025/*": ["src/*", "*"]
     }
   },
   "include": [".dumirc.ts", "src/**/*", "docs/**/*"]
