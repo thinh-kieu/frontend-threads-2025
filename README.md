@@ -9,7 +9,7 @@ npm install
 npm start
 ```
 
-The dev server runs at http://localhost:3000/ with hot reloads.
+The dev server runs at http://localhost:3000/frontend-threads-2025/ with hot reloads.
 
 ## Useful scripts
 

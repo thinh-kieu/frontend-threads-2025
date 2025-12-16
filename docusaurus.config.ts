@@ -66,13 +66,7 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Threads',
-        },
-        {
-          href: 'https://github.com/frontend-threads-2025/frontend-threads-2025',
+          href: 'https://github.com/kieukhuongthinh/frontend-threads-2025',
           label: 'GitHub',
           position: 'right',
         },
@@ -80,48 +74,12 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Threads',
-              to: '/docs/intro',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/frontend-threads-2025/frontend-threads-2025',
-            },
-          ],
-        },
-      ],
       copyright: `Copyright (c) ${new Date().getFullYear()} Frontend Threads. Built with Docusaurus.`,
     },
+    // code block syntax highlighting theme
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: prismThemes.palenight,
+      darkTheme: prismThemes.palenight,
     },
   } satisfies Preset.ThemeConfig,
 };
