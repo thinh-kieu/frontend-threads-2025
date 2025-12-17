@@ -39,6 +39,19 @@ const groupStyle = {
 export default () => {
   return (
     <div>
+      <style>{`
+        .guidelines::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 0;
+          width: 1px;
+          height: 100%;
+          background: red;
+          z-index: 9999;
+        }
+      `}</style>
+
       <div className="guidelines" style={containerStyle}>
         <div style={minionStyle}>
           <Minion label="#1" />
@@ -59,16 +72,3 @@ export default () => {
   );
 };
 ```
-
-<style>
-  .guidelines::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 1px;
-    height: 100%;
-    background: red;
-    z-index: 9999;
-  }
-</style>

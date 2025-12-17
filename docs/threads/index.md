@@ -1,9 +1,11 @@
 ---
-title: Steal
+order: 0
 nav:
   title: Threads
   order: 1
 ---
+
+# Steal
 
 ![Steal gif](../assets/steal.gif)
 

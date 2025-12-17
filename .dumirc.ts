@@ -13,5 +13,7 @@ export default defineConfig({
       github: 'https://github.com/kieukhuongthinh/frontend-threads-2025',
     },
     clickToComponent: true,
+    editLink: false,
+    sourceLink: true,
   },
 });
