@@ -1,9 +1,10 @@
 ---
-title: Center the Minions
 nav:
   title: Warm up!
   order: 0
 ---
+
+# Center the Minions
 
 You have a light gray box with four minions inside. Keep minion #1 where it starts, but align minions #2, #3, and #4 together centered horizontally in the gray box. Use any layout technique you like (flex, grid, absolute positioning, etc.).
 
@@ -11,7 +12,7 @@ Live playground (edit the JSX and styles directly):
 
 ```jsx
 import React from 'react';
-import { Minion } from 'ft2025';
+import { Minion } from 'ft2025/ui/components';
 
 const containerStyle = {
   position: 'relative',

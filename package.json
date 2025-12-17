@@ -1,6 +1,6 @@
 {
   "name": "ft2025",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "A collection of frontend learnings",
   "homepage": "https://kieukhuongthinh.github.io/frontend-threads-2025",
   "bugs": {
@@ -11,8 +11,48 @@
     "url": "git+https://github.com/kieukhuongthinh/frontend-threads-2025.git"
   },
   "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./ui/components": {
+      "types": "./dist/ui/components/index.d.ts",
+      "import": "./dist/ui/components/index.js",
+      "require": "./dist/ui/components/index.js"
+    },
+    "./app/auth": {
+      "types": "./dist/app/auth/index.d.ts",
+      "import": "./dist/app/auth/index.js",
+      "require": "./dist/app/auth/index.js"
+    },
+    "./mocks/api-mocks": {
+      "types": "./dist/mocks/api-mocks.d.ts",
+      "import": "./dist/mocks/api-mocks.js",
+      "require": "./dist/mocks/api-mocks.js"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "ui/components": [
+        "dist/ui/components/index.d.ts"
+      ],
+      "app/auth": [
+        "dist/app/auth/index.d.ts"
+      ],
+      "mocks/api-mocks": [
+        "dist/mocks/api-mocks.d.ts"
+      ],
+      "*": [
+        "dist/*"
+      ]
+    }
+  },
   "files": [
     "dist"
   ],
@@ -33,6 +73,14 @@
     "publish:beta": "npm publish --tag beta",
     "start": "npm run dev",
     "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.1.0",
+    "antd": "^6.1.1",
+    "axios": "^1.13.2",
+    "clsx": "^2.1.1",
+    "jose": "^6.1.3",
+    "msw": "^2.12.4"
   },
   "devDependencies": {
     "@types/react": "^18.3.27",
@@ -59,5 +107,10 @@
   },
   "authors": [
     "kieukhuongthinh@gmail.com"
-  ]
+  ],
+  "msw": {
+    "workerDirectory": [
+      "docs\\public"
+    ]
+  }
 }
