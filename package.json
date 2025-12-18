@@ -1,14 +1,14 @@
 {
   "name": "ft2025",
-  "version": "1.0.0-beta.4",
+  "version": "0.7.1",
   "description": "A collection of frontend learnings",
-  "homepage": "https://kieukhuongthinh.github.io/frontend-threads-2025",
+  "homepage": "https://thinh-kieu.github.io/frontend-threads-2025",
   "bugs": {
-    "url": "https://github.com/kieukhuongthinh/frontend-threads-2025/issues"
+    "url": "https://github.com/thinh-kieu/frontend-threads-2025/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kieukhuongthinh/frontend-threads-2025.git"
+    "url": "git+https://github.com/thinh-kieu/frontend-threads-2025.git"
   },
   "license": "MIT",
   "exports": {
@@ -114,7 +114,7 @@
     "access": "public"
   },
   "authors": [
-    "kieukhuongthinh@gmail.com"
+    "thinh.kieu@sioux.asia"
   ],
   "msw": {
     "workerDirectory": [
