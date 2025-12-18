@@ -2,13 +2,13 @@ name: CI / CD
 
 on:
   push:
-    branches: [main, fix/video-not-found-in-github-pages]
+    branches: [main]
   pull_request:
     branches: [main]
   workflow_dispatch:
 
 env:
-  DEPLOY_BRANCHES: '["main", "fix/video-not-found-in-github-pages"]'
+  DEPLOY_BRANCHES: '["main"]'
 
 permissions:
   contents: read
