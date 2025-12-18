@@ -25,38 +25,19 @@ MSW is a client-agnostic API mocking library. It intercepts outbound HTTP reques
 
 ## Project setup
 
-### 1) Enable mock mode
+In this project, I added a `dev:mock` script. When it runs, the app switches to the `mock` environment and boots the mock setup. This keeps the mock server confined to that mode and out of production builds.
 
-In that project, I added a `dev:mock` script. When it runs, the environment switches to `mock`, and the mock bootstrap is executed.
+:::code-group
 
-```jsx|pure
+```jsx [1) Enable mock mode] | pure
 // main.tsx
 if (import.meta.env.MODE === 'mock') {
   const { setupApiMocks } = await import('./mocks/apiMocks');
-  const { setupSocketMocks } = await import('./mocks/socketMocks');
-
   await setupApiMocks();
-  setupSocketMocks();
 }
 ```
 
-### 2) Start the MSW worker
-
-```jsx|pure
-// apiMocks.tsx
-export const setupApiMocks = async () => {
-  const { setupWorker } = await import('msw/browser');
-  const { authHandlers } = await import('@src/app/auth/apis/mocks');
-
-  await setupWorker(...authHandlers).start({
-    onUnhandledRequest: 'bypass',
-  });
-};
-```
-
-## Example handler
-
-```jsx|pure
+```jsx [2) Create a handler] | pure
 export const loginHandler = http.post<any, LoginRequest, LoginResponse>(
   '/auth/api/login',
   async ({ request }) => {
@@ -73,6 +54,20 @@ export const loginHandler = http.post<any, LoginRequest, LoginResponse>(
   },
 );
 ```
+
+```jsx [3) Start the MSW worker with handlers] | pure
+// apiMocks.tsx
+export const setupApiMocks = async () => {
+  const { setupWorker } = await import('msw/browser');
+  const { authHandlers } = await import('@src/app/auth/apis/mocks');
+
+  await setupWorker(...authHandlers).start({
+    onUnhandledRequest: 'bypass',
+  });
+};
+```
+
+:::
 
 ## Coverage and collaboration
 
