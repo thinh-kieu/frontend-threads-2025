@@ -18,6 +18,7 @@ export interface IScreenshotService {
 
 export interface ScreenshotOptions {
   targetWidth?: number;
+  useClone?: boolean;
   /** Force a background color; use 'transparent' for alpha. */
   backgroundColor: string | null;
   /** Extra elements to ignore in capture. */
@@ -47,11 +48,6 @@ class ScreenshotService implements IScreenshotService {
     }
     return false;
   };
-
-  private computeScale(custom?: number): number {
-    const dpr = Math.min(Math.max(window.devicePixelRatio || 1, 1), 3); // clamp 1..3 to avoid insane memory
-    return custom && custom > 0 ? custom : dpr;
-  }
 
   private makeOnClone = (opts: ScreenshotOptions, scale: number) => {
     console.debug('makeOnClone', { opts, scale });
@@ -190,8 +186,11 @@ class ScreenshotService implements IScreenshotService {
     opts?: Partial<ScreenshotOptions>,
   ): Promise<HTMLCanvasElement> {
     const zoomRatio = getCurrentZoomRatio();
-    const basedWidth = document.documentElement.clientWidth / zoomRatio;
-    const basedHeight = document.documentElement.clientHeight / zoomRatio;
+    const rect = element.getBoundingClientRect();
+    const basedWindowWidth = document.documentElement.clientWidth / zoomRatio;
+    const basedWindowHeight = document.documentElement.clientHeight / zoomRatio;
+    const basedWidth = rect.width / zoomRatio;
+    const basedHeight = rect.height / zoomRatio;
     const targetWidth = opts?.targetWidth ?? DEFAULT_TARGET_WIDTH;
     const scale = targetWidth / basedWidth;
 
@@ -200,18 +199,7 @@ class ScreenshotService implements IScreenshotService {
       extraIgnore: opts?.extraIgnore,
     };
 
-    // Some UIs rely on scroll; ensure capture uses a stable origin (0,0)
-    const prevScrollX = window.scrollX;
-    const prevScrollY = window.scrollY;
     try {
-      if (prevScrollX !== 0 || prevScrollY !== 0) {
-        window.scrollTo({
-          left: 0,
-          top: 0,
-          behavior: 'instant' as ScrollBehavior,
-        });
-      }
-
       const h2cOpts: Partial<H2COptions> = {
         useCORS: true,
         allowTaint: false,
@@ -237,10 +225,12 @@ class ScreenshotService implements IScreenshotService {
         // Preprocess the cloned DOM (replace <video> etc. and disable dynamicZoom)
         // Clone 1:1 video frame, and let the html2canvas handle the scaling based on scale option
         // So that, not only video frame will be scaled, but other elements as well to keep the consistency
-        onclone: this.makeOnClone(options, 1),
+        onclone: opts?.useClone ? this.makeOnClone(options, 1) : undefined,
         scale: scale,
-        windowWidth: basedWidth,
-        windowHeight: basedHeight,
+        windowWidth: basedWindowWidth,
+        windowHeight: basedWindowHeight,
+        width: basedWidth,
+        height: basedHeight,
       };
 
       const canvas = await html2canvas(element, h2cOpts);
@@ -250,8 +240,8 @@ class ScreenshotService implements IScreenshotService {
         height: canvas.height,
         windowWidth: document.documentElement.clientWidth,
         windowHeight: document.documentElement.clientHeight,
-        basedWidth,
-        basedHeight,
+        basedWindowWidth,
+        basedWindowHeight,
         targetWidth,
         scale,
         zoomRatio,
@@ -261,15 +251,6 @@ class ScreenshotService implements IScreenshotService {
     } catch (error) {
       console.error('Screenshot capture failed:', error);
       throw error;
-    } finally {
-      // Restore scroll position
-      if (prevScrollX !== 0 || prevScrollY !== 0) {
-        window.scrollTo({
-          left: prevScrollX,
-          top: prevScrollY,
-          behavior: 'instant' as ScrollBehavior,
-        });
-      }
     }
   }
 
