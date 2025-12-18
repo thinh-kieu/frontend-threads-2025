@@ -28,7 +28,7 @@ You can see a visual demonstration of this approach in the demo below.
 
 ```jsx
 import React, { useCallback, useRef, useState, useEffect } from 'react';
-import { Button, Flex, InputNumber, Switch, Typography } from 'antd';
+import { Button, Flex, InputNumber, Switch, Typography, Spin } from 'antd';
 import { CameraOutlined } from '@ant-design/icons';
 import { screenshotService } from 'ft2025/infrastructure/screenshot';
 import { uploadScreenshot } from 'ft2025/app/screenshot';
@@ -41,6 +41,7 @@ export default () => {
   const contentRef = useRef(null);
 
   const [ready, setReady] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [targetWidth, setTargetWidth] = useState(DEFAULT_TARGET_WIDTH);
   const [useClone, setUseClone] = useState(true);
 
@@ -97,21 +98,29 @@ export default () => {
         </Flex>
       </Flex>
       <div ref={contentRef}>
-        <video
-          src={video4k}
-          autoPlay
-          muted
-          controls={false}
-          playsInline
-          disablePictureInPicture
-          onContextMenu={(e) => e.preventDefault()}
-          style={{
-            pointerEvents: 'none',
-            width: 500,
-            height: 'auto',
-            objectFit: 'contain',
-          }}
-        />
+        <Spin spinning={!ready || loading}>
+          <video
+            src={video4k}
+            autoPlay
+            loop
+            muted
+            playsInline
+            disablePictureInPicture
+            controls={false}
+            onContextMenu={(e) => e.preventDefault()}
+            onLoadStart={() => setLoading(true)}
+            onCanPlay={() => setLoading(false)}
+            onWaiting={() => setLoading(true)}
+            onPlaying={() => setLoading(false)}
+            onError={() => setLoading(false)}
+            style={{
+              pointerEvents: 'none',
+              width: 500,
+              height: 'auto',
+              objectFit: 'contain',
+            }}
+          />
+        </Spin>
       </div>
     </Flex>
   );
