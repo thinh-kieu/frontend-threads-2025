@@ -14,7 +14,7 @@ We explored a few approaches:
 2. **Windows display scaling**
    Because the system ran on Windows, we could set the OS-level Scale setting in Display Settings to enlarge the UI. This works after a one-time setup on the 4K machine, but it still requires manual configuration and the client declined it.
 
-![Windows scale settings](../assets/windows-scale-settings.png)
+![Windows scale settings](../assets/windows-scale-settings.jpg)
 
 The client asked for a code-based solution. We first considered converting the UI to `rem`, but that would have required changing a large number of `px` values in the codebase (and likely in Figma). Given the time constraints and my limited experience with `rem` at the time, I tried a zooming approach instead.
 
