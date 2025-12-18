@@ -101,6 +101,7 @@ export default () => {
         <Spin spinning={!ready || loading}>
           <video
             src={video4k}
+            preload="auto"
             autoPlay
             loop
             muted
