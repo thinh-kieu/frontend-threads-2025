@@ -19,7 +19,7 @@ export default defineConfig({
     footer:
       'Copyright © 2025. Built with <a href="https://d.umijs.org" target="_blank" rel="noreferrer">Dumi</a>.',
     socialLinks: {
-      github: 'https://github.com/thinh-kieu/frontend-threads-2025',
+      github: 'https://github.com/siouxvn/frontend-threads-2025',
     },
     clickToComponent: true,
     editLink: false,

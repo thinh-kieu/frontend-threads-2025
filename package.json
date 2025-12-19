@@ -1,14 +1,14 @@
 {
   "name": "ft2025",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A collection of frontend learnings",
-  "homepage": "https://thinh-kieu.github.io/frontend-threads-2025",
+  "homepage": "https://siouxvn.github.io/frontend-threads-2025",
   "bugs": {
-    "url": "https://github.com/thinh-kieu/frontend-threads-2025/issues"
+    "url": "https://github.com/siouxvn/frontend-threads-2025/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thinh-kieu/frontend-threads-2025.git"
+    "url": "git+https://github.com/siouxvn/frontend-threads-2025.git"
   },
   "license": "MIT",
   "exports": {
